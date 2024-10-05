@@ -9,7 +9,7 @@ send_metrics = false
 [observability]
 enabled = true
 
-[[durable_objects]]
-name = "RATE_LIMITER"
-class_name = "RateLimiter"
-script_name = "index"
+[durable_objects]
+bindings = [
+  { name = "RATE_LIMITER", class_name = "RateLimiter" }
+]
