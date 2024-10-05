@@ -104,10 +104,3 @@ export class RateLimiter {
     });
   }
 }
-
-// Export Durable Object class
-export default {
-  fetch(request, env, ctx) {
-    return env.RATE_LIMITER.fetch(request);
-  }
-};
