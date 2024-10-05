@@ -1,14 +1,15 @@
-// Import the Durable Object class
-export { RateLimiter } from './rate_limiter.js';
-
-// Define the main Worker
+// Export our request handler
 export default {
-  async fetch(request, env) {
-    console.log(`>>> NEW REQUEST INCOMING: ${request.url}`);
+  async fetch(request) {
+    const url = new URL(request.url);
+    
+    // Construct the new URL to forward the request to discord.com
+    const newUrl = `https://discord.com${url.pathname}${url.search}`;
 
-    const rateLimiterId = env.RATE_LIMITER.idFromName("global_rate_limiter");
-    const rateLimiterObject = env.RATE_LIMITER.get(rateLimiterId);
-
-    return rateLimiterObject.fetch(request);
+    return fetch(newUrl, {
+      method: request.method,
+      headers: request.headers,
+      body: request.body
+    });
   }
-};
+}
