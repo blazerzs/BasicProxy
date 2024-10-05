@@ -8,3 +8,8 @@ send_metrics = false
 # Force enable keeping logs
 [observability]
 enabled = true
+
+[[durable_objects]]
+name = "RATE_LIMITER"
+class_name = "RateLimiter"
+script_name = "index"
