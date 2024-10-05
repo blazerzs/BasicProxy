@@ -8,12 +8,3 @@ send_metrics = false
 # Force enable keeping logs
 [observability]
 enabled = true
-
-[durable_objects]
-bindings = [
-  { name = "RATE_LIMITER", class_name = "RateLimiter" }
-]
-
-[[migrations]]
-tag = "v1" # Should be unique for each entry
-new_classes = ["RateLimiter"]
